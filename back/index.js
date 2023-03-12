@@ -24,20 +24,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/api/get', (req, res) => {
     const sqlSelect = "SELECT * FROM contact_db";
+    // const sqlSelect = "SELECT * FROM Users";
     pool.query(sqlSelect, (err, result) => {
         res.send(result);
     });
-
 })
 
 app.get('/api/get/:id', (req, res) => {
     const {id} = req.params;
     const sqlSelect = "SELECT * FROM contact_db where id = ?";
+    // const sqlSelect = "SELECT * FROM Users where id = ?";
     pool.query(sqlSelect, id, (err, result) => {
         console.log(err);
         res.send(result);
     });
-
 })
 
 app.post('/api/post', (req, res) => {
@@ -45,6 +45,7 @@ app.post('/api/post', (req, res) => {
     const last_name = req.body.lname;
     const email = req.body.email;
     const sqlInsert = "INSERT INTO contact_db (First_Name, Last_Name, Email) VALUES (?,?,?)";
+    // const sqlInsert = "INSERT INTO Users (First_Name, Last_Name, Email) VALUES (?,?,?)";
     pool.query(sqlInsert, [first_name, last_name, email], (err, result) => {
         console.log("error",err);
         console.log("result",result);
@@ -55,6 +56,7 @@ app.post('/api/delete/:id', (req, res) => {
     const {id} = req.params;
     console.log(req.params);
     const sqlDelete = "DELETE FROM contact_db WHERE ID = ?";
+    // const sqlDelete = "DELETE FROM Users WHERE ID = ?";
     pool.query(sqlDelete, id, (err, result) => {
         console.log("error",err);
         console.log("result",result);
@@ -68,6 +70,7 @@ app.put('/api/update/:id', (req, res) => {
     const last_name = req.body.lname;
     const email = req.body.email;
     const sqlUpdate = "UPDATE contact_db SET First_Name = ?, Last_Name = ?, Email = ? WHERE ID = ?";
+    // const sqlUpdate = "UPDATE Users SET First_Name = ?, Last_Name = ?, Email = ? WHERE ID = ?";
     pool.query(sqlUpdate, [first_name, last_name, email, id], (err, result) => {
         console.log("error",err);
         console.log("result",result);
@@ -75,10 +78,10 @@ app.put('/api/update/:id', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send('CRUD');
 });
 
 app.listen(5000, () => {
-    console.log('5000 lol');
+    console.log('5000');
 })
 

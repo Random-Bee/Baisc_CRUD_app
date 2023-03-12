@@ -13,10 +13,10 @@ const App = () => {
       <div className='App'>
         <ToastContainer position='bottom-right' />
         <Routes>
-          <Route exact path='/' element={<Home/>} />
-          <Route exact path='/info/:id' element={<Get/>} />
-          <Route exact path='/add' element={<AddEdit/>} />
-          <Route exact path='/update/:id' element={<AddEdit/>} />
+          <Route exact path='/' element={<Home />} />
+          <Route exact path='/info/:id' element={<Get />} />
+          <Route exact path='/add' element={<AddEdit />} />
+          <Route exact path='/update/:id' element={<AddEdit />} />
         </Routes>
       </div>
     </BrowserRouter>

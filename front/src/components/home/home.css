@@ -1,0 +1,17 @@
+.Home {
+    margin-top: 15vh;
+    font-family: 'Montserrat';
+}
+
+.Home-btn-container {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-columns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
