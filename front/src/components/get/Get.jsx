@@ -11,7 +11,7 @@ const Get = () => {
   const {id} = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/get/${id}`)
+    axios.get(`http://localhost:5000/get/${id}`)
     .then((res) => {
       setUser(res.data[0])
     });

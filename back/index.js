@@ -22,7 +22,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/api/get', (req, res) => {
+app.get('/get', (req, res) => {
     const sqlSelect = "SELECT * FROM contact_db";
     // const sqlSelect = "SELECT * FROM Users";
     pool.query(sqlSelect, (err, result) => {
@@ -30,40 +30,33 @@ app.get('/api/get', (req, res) => {
     });
 })
 
-app.get('/api/get/:id', (req, res) => {
+app.get('/get/:id', (req, res) => {
     const {id} = req.params;
     const sqlSelect = "SELECT * FROM contact_db where id = ?";
     // const sqlSelect = "SELECT * FROM Users where id = ?";
     pool.query(sqlSelect, id, (err, result) => {
-        console.log(err);
         res.send(result);
     });
 })
 
-app.post('/api/post', (req, res) => {
+app.post('/post', (req, res) => {
     const first_name = req.body.fname;
     const last_name = req.body.lname;
     const email = req.body.email;
     const sqlInsert = "INSERT INTO contact_db (First_Name, Last_Name, Email) VALUES (?,?,?)";
     // const sqlInsert = "INSERT INTO Users (First_Name, Last_Name, Email) VALUES (?,?,?)";
-    pool.query(sqlInsert, [first_name, last_name, email], (err, result) => {
-        console.log("error",err);
-        console.log("result",result);
-    });
+    pool.query(sqlInsert, [first_name, last_name, email]);
 })
 
-app.post('/api/delete/:id', (req, res) => {
+app.post('/delete/:id', (req, res) => {
     const {id} = req.params;
     console.log(req.params);
     const sqlDelete = "DELETE FROM contact_db WHERE ID = ?";
     // const sqlDelete = "DELETE FROM Users WHERE ID = ?";
-    pool.query(sqlDelete, id, (err, result) => {
-        console.log("error",err);
-        console.log("result",result);
-    });
+    pool.query(sqlDelete, id);
 })
 
-app.put('/api/update/:id', (req, res) => {
+app.put('/update/:id', (req, res) => {
     console.log(req.params, req.body);
     const {id} = req.params;
     const first_name = req.body.fname;
@@ -71,10 +64,7 @@ app.put('/api/update/:id', (req, res) => {
     const email = req.body.email;
     const sqlUpdate = "UPDATE contact_db SET First_Name = ?, Last_Name = ?, Email = ? WHERE ID = ?";
     // const sqlUpdate = "UPDATE Users SET First_Name = ?, Last_Name = ?, Email = ? WHERE ID = ?";
-    pool.query(sqlUpdate, [first_name, last_name, email, id], (err, result) => {
-        console.log("error",err);
-        console.log("result",result);
-    });
+    pool.query(sqlUpdate, [first_name, last_name, email, id]);
 })
 
 app.get('/', (req, res) => {

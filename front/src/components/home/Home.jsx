@@ -9,8 +9,7 @@ const Home = () => {
   const [data, setData] = useState([]);
 
   const loadData = async () => {
-    const res = await axios.get("http://localhost:5000/api/get");
-    // const res  = await axios.get("https://ModernArcticSequence.aayushkumar03.repl.co/api/get");
+    const res = await axios.get("http://localhost:5000/get");
     setData(res.data);
   }
 
@@ -20,7 +19,7 @@ const Home = () => {
 
   const deleteContact = (id) => {
     if (window.confirm("Are you sure you want to delete this contact?")) {
-      axios.post(`http://localhost:5000/api/delete/${id}`);
+      axios.post(`http://localhost:5000/delete/${id}`);
       toast.success("Contact deleted successfully");
       setTimeout(() => loadData(), 500);
     }

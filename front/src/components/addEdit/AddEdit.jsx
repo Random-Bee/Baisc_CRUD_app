@@ -21,7 +21,7 @@ const AddEdit = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/get/${id}`).then((res) => {
+    axios.get(`http://localhost:5000/get/${id}`).then((res) => {
       setState({ fname: res.data[0].First_Name, lname: res.data[0].Last_Name, email: res.data[0].Email });
     })
   }, [id]);
@@ -32,7 +32,7 @@ const AddEdit = () => {
       return toast.error('Please fill all the fields');
     }
     else if (!id) {
-      axios.post("http://localhost:5000/api/post", { fname, lname, email }).then(() => {
+      axios.post("http://localhost:5000/post", { fname, lname, email }).then(() => {
         setState(initial);
       }).catch((err) => {
         console.log(err);
@@ -43,7 +43,7 @@ const AddEdit = () => {
       }, 500);
     }
     else {
-      axios.put(`http://localhost:5000/api/update/${id}`, { fname, lname, email }).then(() => {
+      axios.put(`http://localhost:5000/update/${id}`, { fname, lname, email }).then(() => {
         setState(initial);
       }).catch((err) => {
         console.log(err);
