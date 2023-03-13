@@ -39,11 +39,9 @@ const Home = () => {
 
 
   const deleteContact = () => {
-    // if (window.confirm("Are you sure you want to delete this contact?")) {
     axios.post(`http://localhost:5000/delete/${itemID}`);
     toast.success("Contact deleted successfully");
     setTimeout(() => loadData(), 500);
-    // }
   }
 
   const agreeDeletion = () => {
@@ -80,7 +78,6 @@ const Home = () => {
                           <Link to={`/update/${item.ID}`} style={{ textDecoration: 'none' }}>
                             <Button className='Home-btn-btn' variant='contained' color='secondary'>Edit</Button>
                           </Link>
-                          {/* <Button className='Home-btn-btn' onClick={() => deleteContact(item.ID)} variant='contained' color='error'>Delete</Button> */}
                           <Button variant="contained" onClick={() => handleClickOpen(item.ID)} color='error'>Delete</Button>
 
                           <Link to={`/info/${item.ID}`} style={{ textDecoration: 'none' }}>
