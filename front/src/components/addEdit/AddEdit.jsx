@@ -3,7 +3,7 @@ import { useNavigate, useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import './addEdit.css'
-import { Box, Button, Stack, TextField} from '@mui/material'
+import { Box, Button, Stack, TextField } from '@mui/material'
 
 const initial = {
   fname: '',
@@ -21,6 +21,7 @@ const AddEdit = () => {
   const { id } = useParams();
 
   useEffect(() => {
+    if (!id) return;
     axios.get(`http://localhost:5000/get/${id}`).then((res) => {
       setState({ fname: res.data[0].First_Name, lname: res.data[0].Last_Name, email: res.data[0].Email });
     })
@@ -64,11 +65,11 @@ const AddEdit = () => {
     <Box className='AddEdit scale-up-center'>
       <form onSubmit={handleSubmit}>
         <Box>
-        <Stack spacing={2} direction='column'>
-          <TextField label='First Name' type="text" id="fname" name="fname" placeholder='Enter First Name' value={fname || ""} onChange={handleInputChange} />
-          <TextField label='Last Name' type="text" id="lname" name="lname" placeholder='Enter Last Name' value={lname || ""} onChange={handleInputChange} />
-          <TextField label='Email' type="text" id="email" name="email" placeholder='Enter Email' value={email || ""} onChange={handleInputChange} />
-        </Stack>
+          <Stack spacing={2} direction='column'>
+            <TextField label='First Name' type="text" id="fname" name="fname" placeholder='Enter First Name' value={fname || ""} onChange={handleInputChange} />
+            <TextField label='Last Name' type="text" id="lname" name="lname" placeholder='Enter Last Name' value={lname || ""} onChange={handleInputChange} />
+            <TextField label='Email' type="text" id="email" name="email" placeholder='Enter Email' value={email || ""} onChange={handleInputChange} />
+          </Stack>
         </Box>
         <Box className='AddEdit-btn'>
           <Button type="submit" value variant='contained' color='success'> {id ? "Update" : "Add"} </Button>

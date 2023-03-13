@@ -9,6 +9,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+
+var itemID = 0;
+
 const Home = () => {
   const [data, setData] = useState([]);
 
@@ -21,9 +24,12 @@ const Home = () => {
     loadData();
   }, []);
 
+
+
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (id) => {
+    itemID = id;
     setOpen(true);
   };
 
@@ -32,16 +38,16 @@ const Home = () => {
   };
 
 
-  const deleteContact = (id) => {
+  const deleteContact = () => {
     // if (window.confirm("Are you sure you want to delete this contact?")) {
-      axios.post(`http://localhost:5000/delete/${id}`);
-      toast.success("Contact deleted successfully");
-      setTimeout(() => loadData(), 500);
+    axios.post(`http://localhost:5000/delete/${itemID}`);
+    toast.success("Contact deleted successfully");
+    setTimeout(() => loadData(), 500);
     // }
   }
 
-  const agree = (id) => {
-    deleteContact(id);
+  const agreeDeletion = () => {
+    deleteContact();
     handleClose();
   }
 
@@ -75,7 +81,8 @@ const Home = () => {
                           <Link to={`/update/${item.ID}`} style={{ textDecoration: 'none' }}>
                             <Button className='Home-btn-btn' variant='contained' color='secondary'>Edit</Button>
                           </Link>
-                          <Button variant="contained" onClick={handleClickOpen} color='error'>Delete</Button>
+                          {/* <Button className='Home-btn-btn' onClick={() => deleteContact(item.ID)} variant='contained' color='error'>Delete</Button> */}
+                          <Button variant="contained" onClick={() => handleClickOpen(item.ID)} color='error'>Delete</Button>
 
                           <Link to={`/info/${item.ID}`} style={{ textDecoration: 'none' }}>
                             <Button className='Home-btn-btn' variant='contained'>Get</Button>
@@ -84,32 +91,35 @@ const Home = () => {
                       </TableCell>
                     </TableRow>
 
-                    <Dialog
-                      open={open}
-                      TransitionComponent={Transition}
-                      keepMounted
-                      onClose={handleClose}
-                      aria-describedby="alert-dialog-slide-description"
-                      BackdropProps={{ style: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } }}
-                    >
-                      <DialogTitle>{"Delete Contact?"}</DialogTitle>
-                      <DialogContent>
-                        <DialogContentText id="alert-dialog-slide-description">
-                          Are you sure you want to delete this contact?
-                        </DialogContentText>
-                      </DialogContent>
-                      <DialogActions>
-                        <Button onClick={handleClose}>No</Button>
-                        <Button onClick={() => agree(item.ID)}>Yes</Button>
-                      </DialogActions>
-                    </Dialog>
-                    
+
                   </>
                 )
               })}
             </TableBody>
           </Table>
         </TableContainer>
+
+
+        <Dialog
+          open={open}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={handleClose}
+          aria-describedby="alert-dialog-slide-description"
+          BackdropProps={{ style: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } }}
+        >
+          <DialogTitle>{"Delete Contact?"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-slide-description">
+              Are you sure you want to delete this contact?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>No</Button>
+            <Button onClick={agreeDeletion}>Yes</Button>
+          </DialogActions>
+        </Dialog>
+
         <Box className='Home-btn-container'>
           <Link to={'/add'} style={{ textDecoration: 'none' }}>
             <Button className='Home-btn btn-add' variant='contained' color='success'>Add User</Button>
