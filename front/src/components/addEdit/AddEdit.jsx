@@ -3,7 +3,7 @@ import { useNavigate, useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import './addEdit.css'
-import { Box, Container, Button, Stack, TextField, InputLabel } from '@mui/material'
+import { Box, Button, Stack, TextField} from '@mui/material'
 
 const initial = {
   fname: '',
@@ -61,7 +61,7 @@ const AddEdit = () => {
   }
 
   return (
-    <Box className='AddEdit'>
+    <Box className='AddEdit scale-up-center'>
       <form onSubmit={handleSubmit}>
         <Box>
         <Stack spacing={2} direction='column'>

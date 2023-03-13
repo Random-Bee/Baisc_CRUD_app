@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
 import axios from "axios"
 import './home.css'
-import { Container, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, Button, Box, Stack } from '@mui/material'
+import { Container, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, Button, Box } from '@mui/material'
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -28,7 +28,7 @@ const Home = () => {
 
   return (
     <Container>
-      <Box className='Home' style={{padding: '1rem'}}>
+      <Box className='Home scale-up-center' style={{padding: '1rem'}}>
         <TableContainer component={Paper} sx={{ maxHeight: '400px'}} >
           <Table aria-label='User Info' stickyHeader>
             <TableHead>
@@ -53,11 +53,11 @@ const Home = () => {
                     <TableCell align='center'>
                       <Box className='btn-columns'>
                         <Link to={`/update/${item.ID}`} style={{ textDecoration: 'none' }}>
-                          <Button className='Home-btn btn-edit' variant='contained' color='secondary'>Edit</Button>
+                          <Button className='Home-btn-btn' variant='contained' color='secondary'>Edit</Button>
                         </Link>
-                        <Button className='Home-btn btn-delete' onClick={() => deleteContact(item.ID)} variant='contained' color='error'>Delete</Button>
+                        <Button className='Home-btn-btn' onClick={() => deleteContact(item.ID)} variant='contained' color='error'>Delete</Button>
                         <Link to={`/info/${item.ID}`} style={{ textDecoration: 'none' }}>
-                          <Button className='Home-btn btn-get' variant='contained'>Get</Button>
+                          <Button className='Home-btn-btn' variant='contained'>Get</Button>
                         </Link>
                       </Box>
                     </TableCell>
