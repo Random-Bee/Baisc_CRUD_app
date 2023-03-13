@@ -3,12 +3,11 @@ import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
 import axios from "axios"
 import './home.css'
-import { Slide, Container, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, Button, Box, Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText } from '@mui/material'
+import {Slide, Container, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, Button, Box, Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText } from '@mui/material'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
 
 var itemID = 0;
 
@@ -24,8 +23,6 @@ const Home = () => {
     loadData();
   }, []);
 
-
-
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = (id) => {
@@ -36,7 +33,6 @@ const Home = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
 
   const deleteContact = () => {
     axios.post(`http://localhost:5000/delete/${itemID}`);
@@ -66,9 +62,7 @@ const Home = () => {
             <TableBody>
               {data.map((item, index) => {
                 return (
-                    <TableRow key={item.ID}
-                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    >
+                    <TableRow key={item.ID}>
                       <TableCell align='center'>{index + 1}</TableCell>
                       <TableCell align='center'>{item.First_Name}</TableCell>
                       <TableCell align='center'>{item.Last_Name}</TableCell>
