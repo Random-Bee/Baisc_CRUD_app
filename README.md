@@ -14,7 +14,7 @@ This will install all the required dependencies.
 
 ## Usage
 
-First, change the database credentials in the back folder ans initial_data folder to the database that you are using.
+First, change the database credentials in the back folder and initial_data folder to the database that you are using.
 
 To run the app, you need to run the following commands in each of the folders (front, back, and initial_data):
 
