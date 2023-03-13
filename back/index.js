@@ -41,8 +41,7 @@ app.post('/post', (req, res) => {
 
 app.post('/delete/:id', (req, res) => {
     const {id} = req.params;
-    const sqlDelete = "DELETE FROM contact_db WHERE ID = ?";
-    // const sqlDelete = "DELETE FROM Users WHERE ID = ?";
+    const sqlDelete = "DELETE FROM Users WHERE ID = ?";
     pool.query(sqlDelete, id);
 })
 
