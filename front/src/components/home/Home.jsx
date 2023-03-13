@@ -68,7 +68,6 @@ const Home = () => {
             <TableBody>
               {data.map((item, index) => {
                 return (
-                  <>
                     <TableRow key={item.ID}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
@@ -90,9 +89,6 @@ const Home = () => {
                         </Box>
                       </TableCell>
                     </TableRow>
-
-
-                  </>
                 )
               })}
             </TableBody>
